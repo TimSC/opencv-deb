@@ -1,0 +1,49 @@
+Description: Reapply multi-arch patch
+ .
+ opencv (3.2.0+dfsg-1~xenial1.1) xenial; urgency=medium
+ .
+   * Re-apply multi-arch patch
+   * Fix shlibdeps problem http://stackoverflow.com/a/18793112/4288232
+Author: Tim Sheerman-Chase <orders2008@sheerman-chase.org.uk>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: https://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- opencv-3.2.0+dfsg.orig/CMakeLists.txt
++++ opencv-3.2.0+dfsg/CMakeLists.txt
+@@ -395,7 +395,7 @@ else()
+     ocv_update(OPENCV_OTHER_INSTALL_PATH   etc)
+     ocv_update(OPENCV_CONFIG_INSTALL_PATH  ".")
+   else()
+-    ocv_update(OPENCV_LIB_INSTALL_PATH     lib${LIB_SUFFIX})
++    ocv_update(OPENCV_LIB_INSTALL_PATH     ${CMAKE_INSTALL_LIBDIR}${LIB_SUFFIX})
+     ocv_update(OPENCV_3P_LIB_INSTALL_PATH  share/OpenCV/3rdparty/${OPENCV_LIB_INSTALL_PATH})
+     ocv_update(OPENCV_SAMPLES_SRC_INSTALL_PATH    share/OpenCV/samples)
+     ocv_update(OPENCV_JAR_INSTALL_PATH share/OpenCV/java)
+@@ -404,7 +404,7 @@ else()
+     if(NOT DEFINED OPENCV_CONFIG_INSTALL_PATH)
+       math(EXPR SIZEOF_VOID_P_BITS "8 * ${CMAKE_SIZEOF_VOID_P}")
+       if(LIB_SUFFIX AND NOT SIZEOF_VOID_P_BITS EQUAL LIB_SUFFIX)
+-        ocv_update(OPENCV_CONFIG_INSTALL_PATH lib${LIB_SUFFIX}/cmake/opencv)
++        ocv_update(OPENCV_CONFIG_INSTALL_PATH ${CMAKE_INSTALL_LIBDIR}${LIB_SUFFIX}/cmake/opencv)
+       else()
+         ocv_update(OPENCV_CONFIG_INSTALL_PATH share/OpenCV)
+       endif()
+@@ -515,6 +515,7 @@ if(UNIX)
+   find_package(PkgConfig QUIET)
+   include(CheckFunctionExists)
+   include(CheckIncludeFile)
++  include(GNUInstallDirs)
+ 
+   if(NOT APPLE)
+     CHECK_INCLUDE_FILE(pthread.h HAVE_LIBPTHREAD)

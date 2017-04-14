@@ -1,10 +1,29 @@
+opencv (3.2.0+dfsg-1~xenial1.2) xenial; urgency=medium
+
+  * Fix java version numbers
+
+ -- Tim Sheerman-Chase <orders2008@sheerman-chase.org.uk>  Fri, 14 Apr 2017 10:47:34 +0100
+
+opencv (3.2.0+dfsg-1~xenial1.1) xenial; urgency=medium
+
+  * Re-apply multi-arch patch
+  * Fix shlibdeps problem http://stackoverflow.com/a/18793112/4288232
+
+ -- Tim Sheerman-Chase <orders2008@sheerman-chase.org.uk>  Fri, 14 Apr 2017 00:23:58 +0100
+
+opencv (3.2.0+dfsg-1~xenial1) xenial; urgency=medium
+
+  * Move to new upstream version 3.2.0
+
+ -- Tim Sheerman-Chase <orders2008@sheerman-chase.org.uk>  Thu, 13 Apr 2017 18:07:01 +0000
+
 opencv (3.1.0+dfsg-1~xenial1) xenial; urgency=medium
 
   * New upstream release (3.1.0)
-  * Rebuild for xenial
+  * Rebuild for yakkety
   * Add python3 support
 
- -- Sebastien Badia <seb@sebian.fr>  Fri, 30 Sep 2016 16:27:20 +0000
+ -- Sebastien Badia <seb@sebian.fr>  Sat, 01 Oct 2016 15:15:01 +0000
 
 opencv (3.0.0+dfsg-1~exp5) experimental; urgency=medium
 
